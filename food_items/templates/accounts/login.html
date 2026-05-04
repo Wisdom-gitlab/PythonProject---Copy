@@ -1,0 +1,42 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <link rel="stylesheet" href="{% static 'style/login.css' %}">
+    <style>
+        .error{
+            color:red;
+        }
+    </style>
+</head>
+<body>
+     <div class="container">
+    <h2>Login</h2>
+
+    <form method="POST" action="{% url 'login' %}">
+        {% csrf_token %}
+        <input type="hidden" name="next" value="{{next}}">
+
+        <div class="form_group">
+            <label>username</label>
+            <input type="text" name="username" required>
+        </div>
+
+        <div class="form_group">
+            <label>password</label>
+            <input type="password" name="password" required>
+        </div>
+
+        <button type="submit">Login</button>
+    </form>
+
+    <p>
+        Don't have an account?
+        <a href="{% url 'register' %}">Register here</a>
+    </p>
+</div>
+</body>
+</html>
