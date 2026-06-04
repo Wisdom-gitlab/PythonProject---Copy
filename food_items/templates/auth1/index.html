@@ -1,72 +1,75 @@
 {% load static %}
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>FlavorFoundry Market</title>
-    
-    
 
 
-    
+
+
+
     <link rel="stylesheet" href="{% static 'style/index.css' %}">
 </head>
+
 <body>
 
-<nav class="navbar">
-    <h2 class="logo">FlavorFoundry</h2>
+    <nav class="navbar">
+        <h2 class="logo">FlavorFoundry</h2>
 
-    <form action="{% url 'search' %}" method="GET" class="search-bar">
-        <input type="text" name="q" placeholder="Search food...">
-        <button type="submit">Search</button>
-    </form>
-
-    <div class="nav-links">
-        <a href="{% url 'about' %}">About</a>
-        <a href="{% url 'cart' %}">Cart</a>
-
-        <form method="POST" action="{% url 'logout' %}">
-            {% csrf_token %}
-            <button type="submit" class="logout-btn">Logout</button>
+        <form action="{% url 'search' %}" method="GET" class="search-bar">
+            <input type="text" name="q" placeholder="Search food...">
+            <button type="submit">Search</button>
         </form>
-    </div>
-</nav>
 
-<section class="hero"  style="background-image: url('{% static "images/img1.jpg" %}');">
-    <div class="hero-content">
-        <h1>Welcome, <br>{{ request.user.username }} </h1>
-        <p>Happy Shopping Today!! <br> Discover fresh food, fast and easy</p>
-    </div>
-</section>
+        <div class="nav-links">
+            <a href="{% url 'about' %}">About</a>
+            <a href="{% url 'cart' %}">Cart</a>
 
-<div class="container">
+            <form method="POST" action="{% url 'logout' %}">
+                {% csrf_token %}
+                <button type="submit" class="logout-btn">Logout</button>
+            </form>
+        </div>
+    </nav>
 
-    {% for item in data %}
+    <section class="hero" style="background-image: url('{% static " images/img1.jpg" %}');">
+        <div class="hero-content">
+            <h1>Welcome, <br>{{ request.user.username }} </h1>
+            <p>Happy Shopping Today!! <br> Discover fresh food, fast and easy</p>
+        </div>
+    </section>
+
+    <div class="container">
+
+        {% for item in data %}
 
         <h2 class="category-title">{{ item.category.name }}</h2>
 
         <div class="products">
             {% for product in item.products %}
-                <div class="product-card">
+            <div class="product-card">
 
-                    <img src="{{ product.image.url }}" alt="{{ product.name }}">
+                <img src="{{ product.image.url }}" alt="{{ product.name }}">
 
-                    <h3>{{ product.name }}</h3>
-                    <p>${{ product.price }}</p>
+                <h3>{{ product.name }}</h3>
+                <p>${{ product.price }}</p>
 
-                    <div class="actions">
-                        <a href="{% url 'product_detail' product.id %}">View</a>
-                        <a href="{% url 'add_to_cart' product.id %}">Add</a>
-                    </div>
-
+                <div class="actions">
+                    <a href="{% url 'product_detail' product.id %}">View</a>
+                    <a href="{% url 'add_to_cart' product.id %}">Add</a>
                 </div>
+
+            </div>
             {% endfor %}
         </div>
 
-    {% endfor %}
+        {% endfor %}
 
-</div>
+    </div>
 
 </body>
+
 </html>
