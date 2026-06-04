@@ -28,7 +28,6 @@ SECRET_KEY = 'django-insecure-(0p5964+l)baonjkh8^pa-##+*wzv=epo*%01yj8er9weher_v
 DEBUG = True
 
 
-ALLOWED_HOSTS = ['python-project-copy.vercel.app']
 
 
 # Application definition
@@ -120,7 +119,7 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/6.0/howto/static-files/
 
 STATIC_URL = 'static/'
-STATIC_URL = 'static/'
+
 
 
 
