@@ -5,7 +5,12 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>FlavorFoundry Market</title>
-    <link rel="stylesheet" href="{% static 'style/styles.css' %}">
+    
+    
+
+
+    
+    <link rel="stylesheet" href="{% static 'style/index.css' %}">
 </head>
 <body>
 
@@ -28,29 +33,40 @@
     </div>
 </nav>
 
-<div class="container">
-    <h1>Home</h1>
-    <p>Welcome, {{ request.user.username }}!<br>Happy Shopping</p>
-</div>
-
-{% for item in data %}
-    <h2 class="category-title">{{ item.category.name }}</h2>
-
-    <div class="products">
-        {% for product in item.products %}
-            <div class="product-card">
-                <img src="{{ product.image.url }}">
-                <h3>{{ product.name }}</h3>
-                <p>${{ product.price }}</p>
-
-                <div class="actions">
-                    <a href="{% url 'product_detail' product.id %}">View</a>
-                    <a href="{% url 'add_to_cart' product.id %}">Add</a>
-                </div>
-            </div>
-        {% endfor %}
+<section class="hero"  style="background-image: url('{% static "images/img1.jpg" %}');">
+    <div class="hero-content">
+        <h1>Welcome, <br>{{ request.user.username }} </h1>
+        <p>Happy Shopping Today!! <br> Discover fresh food, fast and easy</p>
     </div>
-{% endfor %}
+</section>
+
+<div class="container">
+
+    {% for item in data %}
+
+        <h2 class="category-title">{{ item.category.name }}</h2>
+
+        <div class="products">
+            {% for product in item.products %}
+                <div class="product-card">
+
+                    <img src="{{ product.image.url }}" alt="{{ product.name }}">
+
+                    <h3>{{ product.name }}</h3>
+                    <p>${{ product.price }}</p>
+
+                    <div class="actions">
+                        <a href="{% url 'product_detail' product.id %}">View</a>
+                        <a href="{% url 'add_to_cart' product.id %}">Add</a>
+                    </div>
+
+                </div>
+            {% endfor %}
+        </div>
+
+    {% endfor %}
+
+</div>
 
 </body>
 </html>

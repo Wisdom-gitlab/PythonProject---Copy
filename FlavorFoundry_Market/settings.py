@@ -120,8 +120,7 @@ STATIC_URL = 'static/'
 STATIC_URL = 'static/'
 
 
-STATICFILESDIRS =(
-    os.path.join(BASE_DIR,'static'))
+
     
 
 
